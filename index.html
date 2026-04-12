@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노랑 더 프리미엄 — 1982년부터 이어온 바삭함의 전통</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+KR:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-logo">Norang<br>The Premium</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar" id="loaderBar"></div>
+        </div>
+    </div>
+
+    <div class="page-progress" id="pageProgress"></div>
+
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <nav id="mainNav">
+        <a href="./indexy.html" class="nav-logo"><img src="./image/logo.png" alt="logo"></a>
+        <ul class="nav-links">
+            <li><a href="#menu">메뉴</a></li>
+            <li><a href="#youtube">광고</a></li>
+            <li><a href="#reviews">리뷰</a></li>
+            <li><a href="#map-section">가맹점</a></li>
+            <li><a href="#">창업안내</a></li>
+        </ul>
+        <button class="nav-order">주문하기</button>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <section id="video-reel">
+        <div class="video-sticky">
+            <div class="video-wrapper">
+
+                <div class="vid-panel active" id="vid1">
+                    <video autoplay muted loop playsinline preload="auto">
+                        <source src="./image/mainbanner1_1.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-dim"></div>
+                    <div class="vid-frame-deco"></div>
+                </div>
+
+                <div class="vid-panel" id="vid2">
+                    <video autoplay muted loop playsinline preload="auto">
+                        <source src="./image/mainbanner2_2.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-dim"></div>
+                    <div class="vid-frame-deco"></div>
+                </div>
+
+                <div class="vid-panel" id="vid3">
+                    <video autoplay muted loop playsinline preload="auto">
+                        <source src="./image/mainbanner3_4.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-dim"></div>
+                    <div class="vid-frame-deco"></div>
+                </div>
+
+            </div>
+
+            <div class="vid-dots">
+                <div class="vid-dot active" id="dot1"></div>
+                <div class="vid-dot" id="dot2"></div>
+                <div class="vid-dot" id="dot3"></div>
+            </div>
+
+            <div class="scroll-hint">
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="event-section">
+        <div class="section-header">
+            <span class="section-tag reveal">우리의 뉴스</span>
+            <h2 class="section-title reveal reveal-delay-1"><span class="accent">노랑통닭</span>의<br>최신소식을 만나보세요</h2>
+            <div class="section-line reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="event-slider">
+            <div class="event-track" id="eventTrack">
+                <div class="event-slide">
+                    <div class="event-slide-inner">
+                        <img src="./image/banner1.jpg" alt="banner 1">
+                        <img src="./image/banner2.jpg" alt="banner 2">
+                    </div>
+                </div>
+
+                <div class="event-slide">
+                    <div class="event-slide-inner">
+                        <img src="./image/banner3.jpg" alt="banner 3">
+                        <img src="./image/banner1.jpg" alt="banner 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-controls">
+            <button class="event-btn" id="eventPrev">&#8592;</button>
+            <button class="event-btn" id="eventNext">&#8594;</button>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="section-header">
+            <span class="section-tag reveal">우리의 메뉴</span>
+            <h2 class="section-title reveal reveal-delay-1">노랑통닭만의<br><span class="accent">맛있는</span> 메뉴</h2>
+            <div class="section-line reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="menu-tabs reveal">
+            <button class="menu-tab active" data-tab="best">베스트</button>
+            <button class="menu-tab" data-tab="chicken">치킨</button>
+            <button class="menu-tab" data-tab="side">사이드</button>
+        </div>
+
+        <div class="menu-tab-panels">
+
+            <!-- 베스트 -->
+            <div class="menu-panel active" id="tab-best">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img4.png" alt="Two 콤비네이션">
+                        <div class="menu-overlay">
+                            <p class="menu-name">Two 콤비네이션</p>
+                            <p class="menu-price">25,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img2-1.png" alt="우도 땅콩 반반 치킨">
+                        <div class="menu-overlay">
+                            <div class="menu-badge">신메뉴</div>
+                            <p class="menu-name">우도 땅콩 반반 치킨</p>
+                            <p class="menu-price">23,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img8.png" alt="바삭 누룽지 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">바삭 누룽지 치킨</p>
+                            <p class="menu-price">23,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img3.png" alt="우도 땅콩 치킨">
+                        <div class="menu-overlay">
+                            <div class="menu-badge">신메뉴</div>
+                            <p class="menu-name">우도 땅콩 치킨</p>
+                            <p class="menu-price">24,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img2.png" alt="갈릭 인 더 딥">
+                        <div class="menu-overlay">
+                            <div class="menu-badge">인기</div>
+                            <p class="menu-name">갈릭 인 더 딥</p>
+                            <p class="menu-price">25,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img9.png" alt=고추장 the한 싸이 바비큐">
+                        <div class="menu-overlay">
+                            <p class="menu-name">고추장 the한 싸이 바비큐</p>
+                            <p class="menu-price">15,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 치킨 -->
+            <div class="menu-panel" id="tab-chicken">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img1.png" alt="엄청 큰 반반 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">엄청 큰 반반 치킨</p>
+                            <p class="menu-price">22,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img6.png" alt="칼칼한 청양 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">칼칼한 청양 치킨</p>
+                            <p class="menu-price">24,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img5.png" alt="뿌리노랑 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">뿌리노랑 치킨</p>
+                            <p class="menu-price">24,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img7.png" alt="맵싸한 깐풍 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">맵싸한 깐풍 치킨</p>
+                            <p class="menu-price">25,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img10.png" alt="알싸한 마늘 치킨">
+                        <div class="menu-overlay">
+                            <p class="menu-name">알싸한 마늘 치킨</p>
+                            <p class="menu-price">24,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-img3.png" alt="우도 땅콩 치킨">
+                        <div class="menu-overlay">
+                            <div class="menu-badge">신메뉴</div>
+                            <p class="menu-name">우도 땅콩 치킨</p>
+                            <p class="menu-price">24,000원~</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 사이드 -->
+            <div class="menu-panel" id="tab-side">
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side3.png" alt="매콤 직화 무뼈닭발">
+                        <div class="menu-overlay">
+                            <p class="menu-name">매콤 직화 무뼈닭발</p>
+                            <p class="menu-price">15,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side2.png" alt="얼큰 짬뽕이닭">
+                        <div class="menu-overlay">
+                            <p class="menu-name">얼큰 짬뽕이닭</p>
+                            <p class="menu-price">17,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side6.png" alt="바사삭 닭껍질 튀김">
+                        <div class="menu-overlay">
+                            <p class="menu-name">바사삭 닭껍질 튀김</p>
+                            <p class="menu-price">6,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side9.png" alt="맵싸한 특수부위 3종">
+                        <div class="menu-overlay">
+                            <p class="menu-name">맵싸한 특수부위 3종</p>
+                            <p class="menu-price">14,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side5.png" alt="땅콩 크림 꽈배기">
+                        <div class="menu-overlay">
+                            <p class="menu-name">땅콩 크림 꽈배기</p>
+                            <p class="menu-price">6,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                    <div class="menu-card">
+                        <img class="menu-img" src="./image/menu-side1.png" alt="맵싸삭 닭껍질 튀김">
+                        <div class="menu-overlay">
+                            <p class="menu-name">맵싸삭 닭껍질 튀김</p>
+                            <p class="menu-price">6,000원</p>
+                            <span class="menu-order-btn">주문하기 →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="youtube">
+        <div class="section-header">
+            <span class="section-tag reveal">광고 영상</span>
+            <h2 class="section-title reveal reveal-delay-1">노랑통닭의 <span class="accent">이야기</span>를<br>영상으로 만나보세요</h2>
+            <div class="section-line reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="yt-container reveal">
+            <div class="yt-deco-line"></div>
+            <div class="yt-frame-wrap">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/mAY0arUq7Xo?si=2Ht-Runj8I7BuNpx"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="yt-label">노랑통닭 공식 유튜브 채널 · 광고</div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <div class="section-header">
+            <span class="section-tag reveal">고객 리뷰</span>
+            <h2 class="section-title reveal reveal-delay-1">고객이 직접 <span class="accent">증명하는</span><br>노랑통닭의 맛</h2>
+            <div class="section-line reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="review-summary">
+            <div class="summary-stat reveal">
+                <span class="stat-num">4.8</span>
+                <span class="stat-label">평균 별점</span>
+            </div>
+            <div class="summary-stat reveal reveal-delay-1">
+                <span class="stat-num">120K+</span>
+                <span class="stat-label">총 리뷰 수</span>
+            </div>
+            <div class="summary-stat reveal reveal-delay-2">
+                <span class="stat-num">97%</span>
+                <span class="stat-label">재주문율</span>
+            </div>
+            <div class="summary-stat reveal reveal-delay-3">
+                <span class="stat-num">1,200+</span>
+                <span class="stat-label">전국 가맹점</span>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+            <div class="review-card reveal">
+                <span class="review-menu-tag">황금후라이드</span>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">정말 오랜만에 이 맛을 느꼈어요. 껍질이 얼마나 바삭한지 씹을 때 소리가 날 정도예요. 옛날 동네 치킨집 추억이 떠올라서 감동받았습니다.</p>
+                <div class="review-meta">
+                    <div class="review-avatar">김</div>
+                    <div>
+                        <span class="review-name">김민준 · 배달의민족</span>
+                        <span class="review-date">2025년 11월 · 부산 해운대점</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card reveal reveal-delay-1">
+                <span class="review-menu-tag">양념치킨</span>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">양념 맛이 달콤하면서 매콤한 균형이 완벽해요. 다른 브랜드들이랑 비교가 안 됩니다. 배달도 빠르고 치킨이 눅눅하지 않게 왔어요!</p>
+                <div class="review-meta">
+                    <div class="review-avatar">이</div>
+                    <div>
+                        <span class="review-name">이서연 · 쿠팡이츠</span>
+                        <span class="review-date">2025년 12월 · 서울 강남점</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-card reveal reveal-delay-2">
+                <span class="review-menu-tag">반반세트</span>
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">가족들이랑 먹으려고 반반 세트를 시켰는데 양도 넉넉하고 모두가 만족했어요. 아이들도 너무 좋아하더라고요. 노랑통닭은 역시 온가족치킨!</p>
+                <div class="review-meta">
+                    <div class="review-avatar">박</div>
+                    <div>
+                        <span class="review-name">박지훈 · 네이버 리뷰</span>
+                        <span class="review-date">2026년 1월 · 경기 수원점</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map-section">
+        <div class="section-header">
+            <span class="section-tag reveal">가맹점 찾기</span>
+            <h2 class="section-title reveal reveal-delay-1">가까운 <span class="accent">노랑통닭</span>을<br>찾아보세요</h2>
+            <div class="section-line reveal reveal-delay-2"></div>
+        </div>
+
+        <div class="map-layout">
+            <div class="map-sidebar">
+                <div class="map-search-box">
+                    <input type="text" placeholder="지역, 주소 검색...">
+                    <button>검색</button>
+                </div>
+
+                <div class="branch-list">
+                    <div class="branch-item selected">
+                        <p class="branch-name">노랑통닭 부산 서면점</p>
+                        <p class="branch-addr">부산광역시 부산진구 서면로 20<br>1층 노랑통닭</p>
+                        <div class="branch-tags">
+                            <span class="branch-tag">24시간</span>
+                            <span class="branch-tag">배달가능</span>
+                            <span class="branch-tag">주차가능</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-frame">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26527.00!2d129.0588!3d35.1580!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ea03e0e92e29%3A0x3a5a3fcba9f83af6!2z67aA7IKw64u0!5e0!3m2!1sko!2skr!4v1700000000000"
+                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="노랑통닭 가맹점 지도">
+                </iframe>
+                <div class="map-watermark">📍 부산 지역 가맹점</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="footer-logo">노랑통닭</span>
+                <p>1982년 첫 문을 연 이후, 40년 이상 대한민국 치킨의 역사와 함께해온 노랑통닭. 변하지 않는 맛과 정성으로 언제나 여러분의 식탁에 행복을 드립니다.</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2024 Norang Tongdak. All rights reserved.</p>
+            <div class="footer-certs">
+                <span>개인정보처리방침</span>
+                <span>|</span>
+                <span>이용약관</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            const bar = document.getElementById('loaderBar');
+            const loader = document.getElementById('loader');
+
+            bar.style.width = '100%';
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                initAnimations();
+            }, 1400);
+        });
+
+        document.body.style.overflow = 'hidden';
+
+        setTimeout(() => {
+            const loaderBar = document.getElementById('loaderBar');
+            if (loaderBar) loaderBar.style.width = '60%';
+        }, 100);
+
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+        if (cursor && cursorRing) {
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursor.style.left = mouseX + 'px';
+                cursor.style.top = mouseY + 'px';
+            });
+
+            (function animRing() {
+                ringX += (mouseX - ringX) * 0.12;
+                ringY += (mouseY - ringY) * 0.12;
+                cursorRing.style.left = ringX + 'px';
+                cursorRing.style.top = ringY + 'px';
+                requestAnimationFrame(animRing);
+            })();
+        }
+
+        const pageProgress = document.getElementById('pageProgress');
+        window.addEventListener('scroll', () => {
+            if (!pageProgress) return;
+            const scrolled = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const pct = maxScroll > 0 ? scrolled / maxScroll : 0;
+            pageProgress.style.transform = `scaleX(${pct})`;
+        });
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+            initVideoReel();
+            initReveal();
+            initEventSlider();
+            initMenuTabs();
+            ScrollTrigger.refresh();
+        }
+
+        function initVideoReel() {
+            const section = document.getElementById('video-reel');
+            const panels = [
+                document.getElementById('vid1'),
+                document.getElementById('vid2'),
+                document.getElementById('vid3')
+            ];
+            const dots = [
+                document.getElementById('dot1'),
+                document.getElementById('dot2'),
+                document.getElementById('dot3')
+            ];
+
+            if (!section || panels.some(panel => !panel) || dots.some(dot => !dot)) return;
+
+            let currentVid = 0;
+
+            function showVid(idx) {
+                panels.forEach((panel, i) => {
+                    gsap.to(panel, {
+                        opacity: i === idx ? 1 : 0,
+                        duration: 0.6,
+                        ease: 'power2.inOut'
+                    });
+
+                    panel.classList.toggle('active', i === idx);
+                    dots[i].classList.toggle('active', i === idx);
+                });
+
+                currentVid = idx;
+            }
+
+            showVid(0);
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: false,
+                onUpdate(self) {
+                    const progress = self.progress;
+                    const idx = Math.min(2, Math.floor(progress * 3));
+                    if (idx !== currentVid) showVid(idx);
+                }
+            });
+        }
+
+        function initReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            if (!reveals.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            reveals.forEach((el) => observer.observe(el));
+        }
+
+        function initEventSlider() {
+            const track = document.getElementById('eventTrack');
+            const slides = document.querySelectorAll('#event-section .event-slide');
+            const prev = document.getElementById('eventPrev');
+            const next = document.getElementById('eventNext');
+
+            if (!track || !slides.length || !prev || !next) return;
+
+            let current = 0;
+
+            function updateSlide() {
+                track.style.transform = `translateX(-${current * 100}%)`;
+            }
+
+            next.addEventListener('click', () => {
+                current = (current + 1) % slides.length;
+                updateSlide();
+            });
+
+            prev.addEventListener('click', () => {
+                current = (current - 1 + slides.length) % slides.length;
+                updateSlide();
+            });
+
+            updateSlide();
+        }
+
+        function initMenuTabs() {
+            const tabs = document.querySelectorAll('.menu-tab');
+            const panels = document.querySelectorAll('.menu-panel');
+
+            if (!tabs.length || !panels.length) return;
+
+            tabs.forEach((tab) => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+
+                    tabs.forEach((btn) => btn.classList.remove('active'));
+                    panels.forEach((panel) => panel.classList.remove('active'));
+
+                    tab.classList.add('active');
+
+                    const targetPanel = document.getElementById(`tab-${target}`);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
