@@ -37,7 +37,7 @@ body {
     color: var(--ink);
     font-family: 'Noto Sans KR', sans-serif;
     overflow-x: hidden;
-    cursor: none;
+    cursor: default;
     position: relative;
 }
 
@@ -97,14 +97,14 @@ nav {
 
 .nav-links {
     display: flex;
-    gap: 2.8rem;
+    gap: 4rem;
     list-style: none;
 }
 
 .nav-links a {
     color: var(--ink2);
     text-decoration: none;
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     transition: color 0.2s;
@@ -120,18 +120,15 @@ nav {
     border: 1px solid rgba(201, 168, 154, 0.35);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-
     padding: 0.56rem 1rem;
     border-radius: 999px;
-
     font-size: 0.66rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     line-height: 1;
-
     box-shadow: none;
-    cursor: none;
+    cursor: default;
     transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
@@ -146,7 +143,7 @@ nav {
     display: none;
     flex-direction: column;
     gap: 5px;
-    cursor: none;
+    cursor: default;
 }
 
 .hamburger span {
@@ -193,7 +190,6 @@ nav {
 }
 
 .section-title .accent {
-    font-style: italic;
     color: var(--rose-deep);
 }
 
@@ -362,11 +358,6 @@ nav {
     left: 0;
     width: 100%;
     height: 60px;
-
-    background: linear-gradient(to bottom,
-            rgba(242, 237, 232, 0) 0%,
-            rgba(242, 237, 232, 1) 100%);
-
     pointer-events: none;
 }
 
@@ -430,7 +421,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: none;
+    cursor: default;
     transition: all 0.22s;
     box-shadow: 0 2px 10px rgba(100, 60, 40, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
@@ -465,7 +456,7 @@ nav {
     font-size: 1rem;
     letter-spacing: 0.12em;
     color: var(--ink3);
-    cursor: none;
+    cursor: default;
     position: relative;
     transition: color 0.2s ease;
 }
@@ -521,8 +512,7 @@ nav {
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     padding: 0;
-    background: rgba(201, 168, 154, 0.22);
-    /* 카드 사이 경계선 역할 */
+    background: var(--ink);
 }
 
 .menu-card {
@@ -530,8 +520,10 @@ nav {
     aspect-ratio: 1 / 1.1;
     overflow: hidden;
     border-radius: 0;
-    background: var(--bg);
-    /* 핵심 변경 */
+    background: linear-gradient(180deg,
+            rgba(44, 36, 32, 1) 0%,
+            rgba(58, 48, 42, 1) 45%,
+            rgba(44, 36, 32, 1) 100%);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border: none;
@@ -542,70 +534,121 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.92;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        opacity 0.35s ease;
 }
 
 .menu-card:hover .menu-img {
     transform: scale(1.04);
 }
 
+
 .menu-overlay {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(255, 252, 249, 0.78) 0%,
-            rgba(255, 252, 249, 0.18) 58%,
-            transparent 100%);
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) translateY(16px);
+    width: 100%;
+    min-height: 140px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    padding: 1.3rem 1.1rem;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.45rem;
+    padding: 1.6rem;
+    background: rgba(242, 237, 232, 0.56);
+    backdrop-filter: blur(22px) saturate(1.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.65);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+    border-right: 1px solid rgba(255, 255, 255, 0.65);
+    z-index: 3;
+    opacity: 0;
+    transition: opacity 0.7s ease, transform 0.7s ease, filter 0.7s ease;
+}
+
+.menu-card:hover .menu-overlay {
+    opacity: 1;
+}
+
+.menu-card.reveal.visible .menu-overlay {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    filter: blur(0);
 }
 
 .menu-badge {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    background: rgba(201, 168, 154, 0.22);
-    color: var(--rose-deep);
-    border: 1px solid rgba(201, 168, 154, 0.35);
-    backdrop-filter: blur(10px);
+    z-index: 4;
+    background: rgba(242, 237, 232, 0.56);
+    color: var(--ink);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(22px) saturate(1.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
     padding: 0.3rem 0.6rem;
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    border-radius: 999px;
 }
 
 .menu-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
+    font-size: clamp(1.05rem, 1.6vw, 1.05rem);
     font-weight: 400;
     color: var(--ink);
-    margin-bottom: 0.3rem;
-    line-height: 1.3;
 }
 
 .menu-price {
-    font-size: 0.8rem;
+    font-size: 1.15rem;
     color: var(--rose-deep);
-    font-weight: 500;
+    font-weight: 400;
+    font-family: 'Cormorant Garamond', serif;
     letter-spacing: 0.05em;
 }
 
 .menu-order-btn {
     display: inline-block;
-    margin-top: 0.7rem;
-    font-size: 0.68rem;
+    margin-top: 0.4rem;
+    font-size: 0.8rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--rose-deep);
-    padding-bottom: 4px;
-    transition: opacity 0.2s ease;
+    color: var(--ink);
+    position: relative;
+}
+
+/* 🔥 항상 underline */
+.menu-order-btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+
+    width: 100%;
+    height: 1px;
+
+    background: var(--ink);
 }
 
 .menu-order-btn:hover {
-    opacity: 0.7;
+    opacity: 0.6;
+}
+
+/* .menu-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 36, 32, 0.18);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 1;
+    pointer-events: none;
+} */
+
+.menu-card:hover::after {
+    opacity: 1;
 }
 
 @media (max-width: 1024px) {
@@ -628,13 +671,23 @@ nav {
     .menu-panel .menu-card:nth-child(n+5) {
         display: none;
     }
+
+    .menu-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        min-height: 96px;
+    }
+
+    .menu-card::after {
+        opacity: 0.08;
+    }
 }
 
 
 /* youtube */
 #youtube {
     background: transparent;
-    padding: 4.5rem 0;
+    padding: 5rem 0 8rem;
     text-align: center;
     overflow: hidden;
 }
@@ -687,25 +740,73 @@ nav {
     letter-spacing: 0.08em;
 }
 
+#youtube::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -80px;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom,
+            rgba(242, 237, 232, 0) 0%,
+            var(--bg) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
 /* reviews */
 #reviews {
-    background: transparent;
-    padding: 4.5rem 0;
     position: relative;
+    padding: 6rem 0;
     overflow: hidden;
+    background: var(--rose);
+    z-index: 1;
+}
+
+
+#reviews .section-title {
+    color: var(--bg);
+}
+
+#reviews .section-tag {
+    color: var(--ink);
+}
+
+#reviews .section-line {
+    background: linear-gradient(to right,
+            transparent,
+            var(--champagne),
+            transparent);
 }
 
 #reviews::before {
-    content: '"';
+    content: '';
     position: absolute;
-    top: -2rem;
-    left: 3%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30rem;
-    color: rgba(201, 168, 154, 0.08);
-    line-height: 1;
+    top: -80px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(to bottom,
+            rgba(242, 237, 232, 0) 0%,
+            var(--bg) 100%);
     pointer-events: none;
-    user-select: none;
+}
+
+#reviews .section-header,
+#reviews .review-summary,
+#reviews .reviews-grid {
+    position: relative;
+    z-index: 1;
+}
+
+/* grain texture */
+#reviews::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Ccircle cx='1' cy='1' r='0.45' fill='rgba(180,140,120,0.07)'/%3E%3Ccircle cx='3' cy='3' r='0.45' fill='rgba(180,140,120,0.07)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
 }
 
 .review-summary {
@@ -718,14 +819,37 @@ nav {
 }
 
 .summary-stat {
-    background: rgba(255, 252, 249, 0.52);
-    backdrop-filter: blur(22px) saturate(1.6);
-    -webkit-backdrop-filter: blur(22px) saturate(1.6);
-    border: 1px solid rgba(255, 255, 255, 0.78);
-    box-shadow: var(--glass-shd), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-    border-radius: 24px;
-    padding: 2rem;
+    padding: 1.8rem;
     text-align: center;
+
+    /* 🔥 nav 스타일 */
+    background: rgba(242, 237, 232, 0.56);
+    backdrop-filter: blur(22px) saturate(1.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+
+    box-shadow: none;
+
+    transition: all 0.35s ease;
+}
+
+.summary-stat:hover {
+    background: rgba(255, 252, 249, 0.52);
+    border-color: rgba(201, 168, 154, 0.45);
+
+    box-shadow: 0 10px 40px rgba(100, 60, 40, 0.12);
+    backdrop-filter: blur(26px) saturate(1.6);
+    transform: translateY(-6px);
+}
+
+.summary-stat:hover .stat-num {
+    transform: scale(1.05);
+    color: var(--rose-deep);
+}
+
+.summary-stat:hover .stat-label {
+    color: var(--ink);
 }
 
 .stat-num {
@@ -734,6 +858,7 @@ nav {
     font-weight: 400;
     color: var(--ink);
     display: block;
+    transition: all 0.3s ease;
 }
 
 .stat-label {
@@ -742,6 +867,7 @@ nav {
     text-transform: uppercase;
     color: var(--ink3);
     display: block;
+    transition: all 0.3s ease;
     margin-top: 0.3rem;
 }
 
@@ -755,19 +881,35 @@ nav {
 }
 
 .review-card {
-    background: rgba(255, 252, 249, 0.52);
-    backdrop-filter: blur(22px) saturate(1.6);
-    -webkit-backdrop-filter: blur(22px) saturate(1.6);
-    border: 1px solid rgba(255, 255, 255, 0.78);
-    box-shadow: var(--glass-shd), inset 0 1px 0 rgba(255, 255, 255, 0.92);
-    border-radius: 24px;
     padding: 2.2rem 2rem;
     position: relative;
-    transition: transform 0.3s ease;
+
+    /* 🔥 기본: nav 스타일 */
+    background: rgba(242, 237, 232, 0.56);
+    backdrop-filter: blur(22px) saturate(1.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
+
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 24px;
+
+    box-shadow: none;
+
+    transition: all 0.35s ease;
 }
 
 .review-card:hover {
-    transform: translateY(-4px);
+    background: rgba(255, 252, 249, 0.52);
+    border-color: rgba(201, 168, 154, 0.45);
+
+    box-shadow: 0 10px 40px rgba(100, 60, 40, 0.12);
+
+    transform: translateX(-6px);
+}
+
+.review-card:hover .review-stars {
+    transform: scale(1.05);
+    transition: all 0.35s ease;
+    color: var(--champ-deep);
 }
 
 .review-menu-tag {
@@ -787,6 +929,7 @@ nav {
 .review-stars {
     display: flex;
     gap: 4px;
+    transition: all 0.35s ease;
     margin-bottom: 1rem;
     color: var(--champ-deep);
 }
@@ -796,6 +939,7 @@ nav {
     line-height: 1.8;
     color: var(--ink2);
     margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .review-meta {
@@ -839,16 +983,26 @@ nav {
 /* map */
 #map-section {
     background: transparent;
-    padding: 4.5rem 0 0;
+    padding: 8rem 0 8rem;
 }
 
 .map-layout {
     display: grid;
     grid-template-columns: 380px 1fr;
     min-height: 600px;
-    max-width: 100%;
+    width: 80%;
+    max-width: 1200px;
+    /* 너무 커지는 것도 방지 */
+    margin: 0 auto;
     gap: 18px;
     padding: 0 24px;
+}
+
+@media (max-width: 1024px) {
+    .map-layout {
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
 }
 
 .map-sidebar {
@@ -894,7 +1048,7 @@ nav {
     padding: 0.45rem 0.9rem;
     font-size: 0.75rem;
     border-radius: 999px;
-    cursor: none;
+    cursor: default;
 }
 
 .branch-list {
@@ -910,7 +1064,7 @@ nav {
     border: 1px solid rgba(201, 168, 154, 0.2);
     border-radius: 18px;
     padding: 1.2rem;
-    cursor: none;
+    cursor: default;
     transition: all 0.2s ease;
 }
 
