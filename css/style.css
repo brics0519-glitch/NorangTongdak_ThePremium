@@ -1442,6 +1442,68 @@ footer {
 }
 
 @media (max-width: 768px) {
+     #video-reel {
+        height: 300svh;
+    }
+
+    .video-sticky {
+        top: 0;
+        height: 100svh;
+        min-height: 100svh;
+        background: #000;
+    }
+
+    .video-wrapper {
+        inset: 0;
+    }
+
+    .vid-panel {
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+    }
+
+    .vid-panel video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center center;
+        background: #000;
+    }
+
+    .video-dim {
+        background: linear-gradient(
+            to bottom,
+            rgba(242, 237, 232, 0.10) 0%,
+            rgba(242, 237, 232, 0.03) 45%,
+            rgba(242, 237, 232, 0.16) 100%
+        );
+    }
+
+    .vid-frame-deco {
+        inset: 1rem;
+    }
+
+    .vid-frame-deco::before,
+    .vid-frame-deco::after {
+        width: 28px;
+        height: 28px;
+    }
+
+    .vid-dots {
+        bottom: 1.4rem;
+    }
+
+    .scroll-hint {
+        right: 1rem;
+        bottom: 1.6rem;
+    }
+
+    .scroll-line {
+        height: 32px;
+    }
     nav {
         padding: 1.2rem 1.5rem;
     }
