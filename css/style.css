@@ -1118,7 +1118,7 @@ nav {
         margin: 0 auto;
         padding: 0;
         gap: 14px;
-    }
+    }c
 
     .map-sidebar,
     .map-frame {
@@ -1590,5 +1590,11 @@ footer {
 @media (max-width: 480px) {
     nav {
         padding: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .yt-container {
+        max-width: 100%;
+        padding: 0 16px;
     }
 }
