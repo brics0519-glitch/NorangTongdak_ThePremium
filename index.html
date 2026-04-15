@@ -525,7 +525,11 @@
         /* init */
         function initAnimations() {
             gsap.registerPlugin(ScrollTrigger);
-            initHeroReel();
+
+            if (window.innerWidth > 768) {
+                initHeroReel();
+            }
+
             initReveal();
             initEventSlider();
             initMenuTabs();
