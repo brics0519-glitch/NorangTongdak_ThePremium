@@ -11,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+KR:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 </head>
 
 <body>
@@ -59,8 +59,8 @@
 
                 <section class="hero-scene active">
                     <video autoplay muted loop playsinline preload="auto">
-                        <source src="./image/mb1_notext.mp4" type="video/mp4">
-                    </video>
+  <source src="./image/mb1_notext.mp4" type="video/mp4">
+</video>
                     <div class="hero-dim"></div>
                     <div class="hero-content active">
                         <span class="hero-eyebrow">Since 1982, 가마솥에 튀겨 치킨의 겉바속촉 시대를 열다</span>
@@ -77,7 +77,7 @@
                 </section>
 
                 <section class="hero-scene">
-                    <video autoplay muted loop playsinline preload="auto">
+                    <video autoplay muted loop playsinline preload="none">
                         <source src="./image/mb2_notext.mp4" type="video/mp4">
                     </video>
                     <div class="hero-dim"></div>
@@ -88,7 +88,7 @@
                 </section>
 
                 <section class="hero-scene">
-                    <video autoplay muted loop playsinline preload="auto">
+                    <video autoplay muted loop playsinline preload="none">
                         <source src="./image/mb3_notext.mp4" type="video/mp4">
                     </video>
                     <div class="hero-dim"></div>
@@ -556,7 +556,7 @@
             if (loader) loader.classList.add('hidden');
             document.body.style.overflow = 'auto';
             initAll();
-        }, 1400);
+        }, 600);
     });
 
     /* ═══════════════════════════════════════════════
@@ -656,20 +656,33 @@
         }
 
         /* 씬 전환 */
-        function goTo(index) {
-            if (index === currentIndex) return;
-            currentIndex = index;
+   function goTo(index) {
+    if (index === currentIndex) return;
+    currentIndex = index;
 
-            heroScenes.forEach((s, i)   => s.classList.toggle('active', i === index));
-            heroContents.forEach((c, i) => c.classList.toggle('active', i === index));
-            heroDots.forEach((d, i)     => d.classList.toggle('active', i === index));
+    heroScenes.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
 
-            if (heroProgress) {
-                heroProgress.style.width = `${((index + 1) / heroScenes.length) * 100}%`;
-            }
-
-            if (index === 0) { animateTemp(); } else { resetTemp(); }
+        // 해당 씬에 처음 진입할 때만 비디오 로딩
+        const vid = s.querySelector('video');
+        if (i === index && vid && vid.dataset.src) {
+            const source = vid.querySelector('source');
+            source.src = vid.dataset.src;
+            vid.load();
+            vid.play();
+            delete vid.dataset.src; // 중복 로딩 방지
         }
+    });
+
+    heroContents.forEach((c, i) => c.classList.toggle('active', i === index));
+    heroDots.forEach((d, i) => d.classList.toggle('active', i === index));
+
+    if (heroProgress) {
+        heroProgress.style.width = `${((index + 1) / heroScenes.length) * 100}%`;
+    }
+
+    if (index === 0) { animateTemp(); } else { resetTemp(); }
+}
 
         /* 초기 상태 세팅 */
         goTo(0);
@@ -761,5 +774,6 @@
         });
     }
     </script>
+
 </body>
 </html>
