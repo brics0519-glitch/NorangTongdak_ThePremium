@@ -536,7 +536,42 @@
             </div>
         </div>
     </footer>
+<!-- 광고 팝업 -->
+<div class="ad-popup-overlay" id="adPopupOverlay" aria-hidden="true">
+    <div class="ad-popup-window" role="dialog" aria-modal="true" aria-labelledby="adPopupTitle">
+        <div class="ad-popup-bar">
+            <div class="ad-popup-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="ad-popup-title" id="adPopupTitle">Advertisement · Norang Tongdak</div>
+            <button class="ad-popup-close" id="adPopupClose" type="button" aria-label="광고 닫기">×</button>
+        </div>
 
+        <div class="ad-popup-body">
+            <div class="ad-popup-video-wrap">
+                <iframe
+                    id="adPopupFrame"
+                    width="560"
+                    height="315"
+                    src=""
+                    data-src="https://www.youtube.com/embed/rPsLPElOUTg?autoplay=1&mute=1&rel=0&playsinline=1"
+                    title="노랑통닭 광고 영상"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+            </div>
+
+            <div class="ad-popup-caption">
+                <span class="ad-popup-badge">AD</span>
+                <p>노랑통닭의 이야기를 광고 영상으로 만나보세요.</p>
+            </div>
+        </div>
+    </div>
+</div>
     <script>
     /* ═══════════════════════════════════════════════
        LOADER
@@ -578,6 +613,7 @@
         initEventSlider();
         initMenuTabs();
         initHamburger();
+        initAdPopup();
 
         const isMobile = window.innerWidth <= 768;
         if (isMobile) {
@@ -588,7 +624,46 @@
 
         ScrollTrigger.refresh();
     }
+        // 광고 팝업
+function initAdPopup() {
+    const overlay = document.getElementById('adPopupOverlay');
+    const closeBtn = document.getElementById('adPopupClose');
+    const frame = document.getElementById('adPopupFrame');
 
+    if (!overlay || !closeBtn || !frame) return;
+
+    function openAdPopup() {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        if (!frame.src) {
+            frame.src = frame.dataset.src;
+        }
+    }
+
+    function closeAdPopup() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+
+        frame.src = '';
+    }
+
+    closeBtn.addEventListener('click', closeAdPopup);
+
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeAdPopup();
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) {
+            closeAdPopup();
+        }
+    });
+
+    setTimeout(openAdPopup, 1800);
+}
     /* ═══════════════════════════════════════════════
        HAMBURGER MENU  ← 수정
     ═══════════════════════════════════════════════ */
