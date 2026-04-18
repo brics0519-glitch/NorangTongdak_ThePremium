@@ -555,7 +555,8 @@
   id="adPopupFrame"
   width="560"
   height="315"
-  src="https://www.youtube.com/embed/UiA1yP9GzCU"
+  src=""
+  data-src="https://www.youtube.com/embed/UiA1yP9GzCU?autoplay=1&rel=0"
   title="YouTube video player"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -644,14 +645,13 @@ function initAdPopup() {
 
     if (!overlay || !closeBtn || !frame) return;
 
+    const adSrc = frame.dataset.src || 'https://www.youtube.com/embed/UiA1yP9GzCU?autoplay=1&rel=0';
+
     function openAdPopup() {
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-
-        if (!frame.src) {
-            frame.src = frame.dataset.src;
-        }
+        frame.src = adSrc;
     }
 
     function closeAdPopup() {
