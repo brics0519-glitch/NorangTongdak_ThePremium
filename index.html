@@ -127,26 +127,29 @@
             <div class="section-line reveal reveal-delay-2"></div>
         </div>
 
-        <div class="event-slider">
-            <div class="event-track" id="eventTrack">
-                <div class="event-slide">
-                    <div class="event-slide-inner">
+        <div class="wheel-scene reveal">
+            <div class="wheel-viewport">
+                <div class="wheel-cylinder" id="wheelCylinder">
+                    <div class="wheel-card" data-index="0">
                         <img src="./image/banner1-2.png" alt="banner 1">
+                    </div>
+                    <div class="wheel-card" data-index="1">
+                        <img src="./image/banner2.png" alt="banner 2">
+                    </div>
+                    <div class="wheel-card" data-index="2">
                         <img src="./image/banner3-1.gif" alt="banner 3">
                     </div>
                 </div>
-                <div class="event-slide">
-                    <div class="event-slide-inner">
-                        <img src="./image/banner2.png" alt="banner 2">
-                        <img src="./image/banner4.png" alt="banner 4">
-                    </div>
-                </div>
             </div>
-        </div>
-
-        <div class="event-controls">
-            <button class="event-btn" id="eventPrev">&#8592;</button>
-            <button class="event-btn" id="eventNext">&#8594;</button>
+            <div class="wheel-controls">
+                <button class="wheel-btn" id="wheelPrev" aria-label="이전">&#8592;</button>
+                <div class="wheel-dots">
+                    <span class="wheel-dot active" data-i="0"></span>
+                    <span class="wheel-dot" data-i="1"></span>
+                    <span class="wheel-dot" data-i="2"></span>
+                </div>
+                <button class="wheel-btn" id="wheelNext" aria-label="다음">&#8594;</button>
+            </div>
         </div>
     </section>
 
@@ -556,7 +559,7 @@
   width="560"
   height="315"
   src=""
-  data-src="https://www.youtube.com/embed/UiA1yP9GzCU?autoplay=1&rel=0"
+  data-src="https://www.youtube.com/embed/UiA1yP9GzCU?autoplay=1&rel=0&vq=hd1080&modestbranding=1&iv_load_policy=3&playsinline=1"
   title="YouTube video player"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -651,7 +654,8 @@ function initAdPopup() {
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        frame.src = adSrc;
+        // 팝업 CSS 트랜지션(350ms) 완료 후 iframe 로드 → 레이아웃 확정된 뒤 재생
+        setTimeout(() => { frame.src = adSrc; }, 380);
     }
 
     function closeAdPopup() {
@@ -883,37 +887,83 @@ function initReveal() {
 }
 
 /* ═══════════════════════════════════════════════
-   EVENT SLIDER
+   EVENT SLIDER → 3-grid (슬라이더 제거됨)
 ═══════════════════════════════════════════════ */
 function initEventSlider() {
-    const track = document.getElementById('eventTrack');
-    const slides = document.querySelectorAll('#event-section .event-slide');
-    const prev = document.getElementById('eventPrev');
-    const next = document.getElementById('eventNext');
+    const cylinder = document.getElementById('wheelCylinder');
+    const cards    = document.querySelectorAll('.wheel-card');
+    const dots     = document.querySelectorAll('.wheel-dot');
+    const prevBtn  = document.getElementById('wheelPrev');
+    const nextBtn  = document.getElementById('wheelNext');
+    if (!cylinder || !cards.length) return;
 
-    if (!track || !slides.length) return;
+    const COUNT   = cards.length;          // 3
+    const RADIUS  = 420;                   // 원통 반지름 (px) — 카드 간격 결정
+    const ANGLE   = 360 / COUNT;           // 120°
+    let   current = 0;
+    let   isAnim  = false;
 
-    let cur = 0;
+    /* 카드 초기 배치 — 원통면에 등간격으로 분포 */
+    cards.forEach((card, i) => {
+        const deg = ANGLE * i;
+        card.style.transform = `rotateX(${deg}deg) translateZ(${RADIUS}px)`;
+    });
 
-    function update() {
-        track.style.transform = `translateX(-${cur * 100}%)`;
+    function rotateTo(index) {
+        if (isAnim) return;
+        isAnim = true;
+        current = ((index % COUNT) + COUNT) % COUNT;
+
+        /* 목표 회전각: 현재 카드를 정면(0°)으로 */
+        const targetDeg = -ANGLE * current;
+        cylinder.style.transform = `rotateX(${targetDeg}deg)`;
+
+        /* 활성 카드 강조 */
+        cards.forEach((c, i) => c.classList.toggle('active', i === current));
+        dots.forEach((d, i)  => d.classList.toggle('active', i === current));
+
+        setTimeout(() => { isAnim = false; }, 700);
     }
 
-    if (next) {
-        next.addEventListener('click', () => {
-            cur = (cur + 1) % slides.length;
-            update();
-        });
+    /* 초기 상태 */
+    rotateTo(0);
+
+    /* 버튼 */
+    prevBtn && prevBtn.addEventListener('click', () => rotateTo(current - 1));
+    nextBtn && nextBtn.addEventListener('click', () => rotateTo(current + 1));
+
+    /* 점 클릭 */
+    dots.forEach(d => d.addEventListener('click', () => rotateTo(+d.dataset.i)));
+
+    /* 드래그 / 터치 스와이프 */
+    let startY = 0, dragging = false;
+    const scene = cylinder.closest('.wheel-scene');
+
+    function onDragStart(y) { startY = y; dragging = true; }
+    function onDragEnd(y) {
+        if (!dragging) return;
+        dragging = false;
+        const diff = startY - y;
+        if (Math.abs(diff) > 40) rotateTo(diff > 0 ? current + 1 : current - 1);
     }
 
-    if (prev) {
-        prev.addEventListener('click', () => {
-            cur = (cur - 1 + slides.length) % slides.length;
-            update();
-        });
-    }
+    scene.addEventListener('mousedown',  e => onDragStart(e.clientY));
+    scene.addEventListener('mouseup',    e => onDragEnd(e.clientY));
+    scene.addEventListener('touchstart', e => onDragStart(e.touches[0].clientY), { passive: true });
+    scene.addEventListener('touchend',   e => onDragEnd(e.changedTouches[0].clientY));
 
-    update();
+    /* 휠 스크롤 (섹션 내에서만) */
+    scene.addEventListener('wheel', e => {
+        e.preventDefault();
+        rotateTo(e.deltaY > 0 ? current + 1 : current - 1);
+    }, { passive: false });
+
+    /* 자동 재생 */
+    let auto = setInterval(() => rotateTo(current + 1), 3500);
+    scene.addEventListener('mouseenter', () => clearInterval(auto));
+    scene.addEventListener('mouseleave', () => {
+        auto = setInterval(() => rotateTo(current + 1), 3500);
+    });
 }
 
 /* ═══════════════════════════════════════════════
