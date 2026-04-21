@@ -818,7 +818,7 @@ nav {
 .yt-banner-card {
     position: relative;
     width: 100%;
-    aspect-ratio: 720 / 980;
+    aspect-ratio: 720 / 1080;
     overflow: hidden;
     border-radius: 28px;
     background: rgba(255, 252, 249, 0.52);
@@ -1664,20 +1664,6 @@ footer {
     padding: 0 1rem 0 1.15rem;
     background: rgba(255, 255, 255, 0.32);
     border-bottom: 1px solid rgba(255, 255, 255, 0.58);
-}
-
-.ad-popup-dots {
-    display: flex;
-    gap: 0.45rem;
-    flex-shrink: 0;
-}
-
-.ad-popup-dots span {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(160, 112, 96, 0.46);
-    border: 1px solid rgba(160, 112, 96, 0.18);
 }
 
 .ad-popup-title {
